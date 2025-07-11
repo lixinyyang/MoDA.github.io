@@ -1,303 +1,164 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Ditto: Motion-Space Diffusion for Controllable Realtime Talking Head Synthesis</title>
+        <link rel="stylesheet" href="static/css/bulma.min.css">
+        <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+        <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+        <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="./asserts/style.css" rel="stylesheet">
 
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    </head>
 
-<title>EchoMimic: Lifelike Audio-Driven Portrait Animations</title>
-<link href="./asserts/style.css" rel="stylesheet">
-<style>@font-face {
-        font-family: 'monica-ext-font_YIBBBFG';
-        src: url('chrome-extension://ofpnmcalabcbjgholdjcjblkibolbppb/static/fonts/Hind-Light.otf');
-        font-weight: 300;
-        font-display: swap;
-      }
-@font-face {
-        font-family: 'monica-ext-font_YIBBBFG';
-        src: url('chrome-extension://ofpnmcalabcbjgholdjcjblkibolbppb/static/fonts/Hind-Regular.otf');
-        font-weight: 400;
-        font-display: swap;
-      }
-@font-face {
-        font-family: 'monica-ext-font_YIBBBFG';
-        src: url('chrome-extension://ofpnmcalabcbjgholdjcjblkibolbppb/static/fonts/Hind-Medium.otf');
-        font-weight: 500;
-        font-display: swap;
-      }
-@font-face {
-        font-family: 'monica-ext-font_YIBBBFG';
-        src: url('chrome-extension://ofpnmcalabcbjgholdjcjblkibolbppb/static/fonts/Hind-SemiBold.otf');
-        font-weight: 600;
-        font-display: swap;
-      }</style><style id="monica-reading-highlight-style">
-        .monica-reading-highlight {
-          animation: fadeInOut 1.5s ease-in-out;
-        }
+    <body>
 
-        @keyframes fadeInOut {
-          0%, 100% { background-color: transparent; }
-          30%, 70% { background-color: rgba(2, 118, 255, 0.20); }
-        }
-      </style></head>
+        <div class="content">
+            <h1><strong> Ditto: Motion-Space Diffusion for Controllable Realtime Talking Head Synthesis </strong></h1>
 
-<body monica-locale="zh_CN" monica-version="5.5.1" monica-id="ofpnmcalabcbjgholdjcjblkibolbppb">
-<div class="content">
-  <h2 style="text-align:center"><strong>EchoMimic Series</strong></h2> 
-  <b>EchoMimicV1</b>: Lifelike Audio-Driven Portrait Animations through Editable Landmark Conditioning. <a href="https://github.com/antgroup/echomimic"><b>GitHub</b></a>
-  <br>
-  <b>EchoMimicV2</b>: Towards Striking, Simplified, and Semi-Body Human Animation.</b> <a href="https://github.com/antgroup/echomimic_v2"><b>GitHub</b></a>
-</div>
-<div class="content">
-  <h1><span><img src="./asserts/logo.png" style="height: 50px;"></span><strong><br>Lifelike Audio-Driven Portrait Animations through Editable Landmark Conditioning</strong></h1>
-  <div class="gallery" style="margin-bottom: 0;">
-    <div class="row">
-      <video width="975" height="195" controls>
-        <source src="asserts/demo_videos/welcome_demo.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="row" style="justify-content: space-evenly; padding: 0; margin-bottom: 0;">
-      <figure style="width: 100%;margin: 25 0 0; text-align: center;">
-        <img src="./asserts/teaser.png" style="height: 400px; width: auto;">
-      </figure>
-    </div>
-  </div>
+            <p id="authors" class="serif">
+                <a>Tianqi Li<sup></sup></a>,
+                <a>Ruobing Zheng<sup>†<dag></dag></sup></a>,
+                <a>Minghui Yang<sup></sup></a>,
+                <a>Jingdong Chen<sup></sup></a>,
+                <a>Ming Yang<sup></sup></a> <br>
+                <span style="font-size: 18px; margin-top: 0.8em">
+                    <sup>†</sup>Corresponding Author.
+                </span>
+                <br>
+                <span style="font-size: 18px; margin-top: 0.8em">
+                    Ant Group.
+                </span>
+            </p>
+            
+            <div class="column-flex">
+                <div class="flex flex-gap" style="margin-bottom:0.5em;">
+                    <a target="_blank" href="https://arxiv.org/abs/2411.19509" ><button><i class="ai ai-arxiv"></i> Paper</button></a>
+                    <a target="_blank" href="https://github.com/antgroup/ditto-talkinghead"><button><i class="fa fa-github"></i> Code</button></a>
+                </div>
+            </div>
 
-  <p id="authors" class="serif">
-    <a>Zhiyuan Chen<sup>*</sup></a>
-    <a>Jiajiong Cao<sup>*<dag></dag></sup></a>
-    <a>Zhiquan Chen<sup></sup></a>
-    <a>Yuming Li<sup></sup></a>
-    <a>Chenguang Ma<sup></sup></a> <br>
-    <span style="font-size: 1.0em; margin-top: 0.8em">
-      <a><sup>*</sup>Equal Contribution.</a>
-    <br>
-    <span style="font-size: 1.0em; margin-top: 0.8em">
-      <a>Terminal Technology Department, Alipay, Ant Group.</a>
-    </span>
-  </p>
+            <br>
 
-  <font size="+2">
-    <!-- <div style="text-align: center; display: flex; justify-content: space-between; margin: 20px 60px;"> -->
-    <div style="text-align: center; display: flex; justify-content: space-between; margin: 10px 160px; font-size:20">
-      <a target="_blank" ,="" href="https://arxiv.org/abs/2407.08136">
-        <img src="./asserts/th.png" alt="arxiv" ,="" style="width: 25px;">[Paper]
-      </a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a target="_blank" ,="" href="https://github.com/BadToBest/EchoMimic">
-        <img src="./asserts/github.png" alt="github" ,="" style="width: 25px;">[Github]
-      </a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a target="_blank" ,="" href="https://huggingface.co/BadToBest/EchoMimic">
-        <img src="./asserts/hugface.png" alt="huggingface" ,="" style="width: 25px;">[HuggingFace]
-      </a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a target="_blank" ,="" href="https://www.modelscope.cn/models/BadToBest/EchoMimic">
-        <img src="./asserts/modelscope.png" alt="modelscope" ,="" style="width: 25px;">[ModelScope]
-      </a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a target="_blank" ,="" href="https://github.com/BadToBest/EchoMimic/blob/main/assets/echomimic.png">
-        <img src="./asserts/wechat.png" alt="wechat" ,="" style="width: 25px;">[WeChat]
-      </a>&nbsp;&nbsp;&nbsp;&nbsp;
-    </div>
-  </font>
+            <div class="row" style="border: 1px solid #a3a3a3; border-radius: 4px;">
+                <video style="width: 100%; object-fit: cover;" controls>
+                    <source src="asserts/videos/full_body_en.mp4" type="video/mp4">
+                </video>
+            </div>
 
-</div>
+            
+            
 
-<div class="content">
-  <h2 style="text-align:center"><strong>Abstract</strong></h2>
-  <p><b><span style="color: #8eadde">EchoMimic</span></b> is capable of generating portrait videos not only by audios and facial landmarks individually, but also by a combination of both audios and selected facial landmarks.</p>
-  <div id="teasers">
-      <img src="./asserts/algo_framework.png" ,="" style="width: 100%;">
-      <figcaption></figcaption>
-  </div>
-  <p>
-    The area of portrait image animation, propelled by audio input, has witnessed notable progress in the generation of lifelike and dynamic portraits. Conventional methods are limited to utilizing either audios or facial key points to drive images into videos, while they can yield satisfactory results, certain issues exist. For instance, methods driven solely by audios can be unstable at times due to the relatively weaker audio signal, while methods driven exclusively by facial key points, although more stable in driving, can result in unnatural outcomes due to the excessive control of key point information. In addressing the previously mentioned challenges, in this paper, we introduce a novel approach which we named EchoMimic. EchoMimic is concurrently trained using both audios and facial landmarks. Through the implementation of a novel training strategy, EchoMimic is capable of generating portrait videos not only by audios and facial landmarks individually, but also by a combination of both audios and selected facial landmarks. EchoMimic has been comprehensively compared with alternative algorithms across various public datasets and our collected dataset, showcasing superior performance in both quantitative and qualitative evaluations. Additional visualization and access to the source code can be located on the EchoMimic project page.
+        </div>
 
-  </p>
-</div>
+        <div class="content">
+            <h2 style="text-align:center"><strong>Abstract</strong></h2>
 
-<div class="content">
-  <h2 style="text-align: center;"><strong>Gallery</strong></h2>
-  <h3>Audio Driven (Chinese)</h3>
-  <div class="gallery">
-    <div class="row">
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/chinese/ch_01.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/chinese/ch_02.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/chinese/ch_03.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/chinese/ch_04.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/chinese/ch_05.mp4" type="video/mp4">
-      </video>
-    </div>
-    <h3>Audio Driven (English)</h3>
-    <div class="row">
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/english/en_01.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/english/en_02.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/english/en_03.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/english/en_04.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/english/en_05.mp4" type="video/mp4">
-      </video>
-    </div>
-    <h3>Audio Driven (Sing)</h3>
-    <div class="row">
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/singing/s_02.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/singing/s_03.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/singing/s_05.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/singing/s_01.mp4" type="video/mp4">
-      </video>
-      <video width="195" height="195" controls>
-        <source src="asserts/demo_videos/singing/s_04.mp4" type="video/mp4">
-      </video>
-    </div>
-    <h3><strong>Landmark Driven</strong></h3>
-    <div class="row">
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/pose_only/po_01.mp4" type="video/mp4">
-      </video>
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/pose_only/po_02.mp4" type="video/mp4">
-      </video>
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/pose_only/po_03.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="row">
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/pose_only/po_04.mp4" type="video/mp4">
-      </video>
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/pose_only/po_05.mp4" type="video/mp4">
-      </video>
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/pose_only/po_06.mp4" type="video/mp4">
-      </video>
-    </div>
-    <h3><strong>Audio + Selected Landmark Driven</strong></h3>
-    <div class="row">
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/audio_pose/ap_01.mp4" type="video/mp4">
-      </video>
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/audio_pose/ap_02.mp4" type="video/mp4">
-      </video>
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/audio_pose/ap_03.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="row">
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/audio_pose/ap_04.mp4" type="video/mp4">
-      </video>
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/audio_pose/ap_05.mp4" type="video/mp4">
-      </video>
-      <video width="324" height="162" controls>
-        <source src="asserts/demo_videos/audio_pose/ap_06.mp4" type="video/mp4">
-      </video>
-    </div>
-    <h3><strong>Video Evaluation Results on HDTF Dataset</strong></h3>
-    <div class="row">
-      <video width="990" height="auto" controls>
-        <source src="asserts/demo_videos/comparison/compare_01.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="row">
-      <video width="990" height="auto" controls>
-        <source src="asserts/demo_videos/comparison/compare_02.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="row">
-      <video width="990" height="auto" controls>
-        <source src="asserts/demo_videos/comparison/compare_03.mp4" type="video/mp4">
-      </video>
-    </div>
-    <h3><strong>Video Evaluation Results Provided by Third Party <a href="https://mp.weixin.qq.com/s/OyZLyvUu_Qi0IRdXLNTH7A"><b>(Link)</b></a></strong></h3>
-    <div class="row">
-      <video width="990" height="auto" controls>
-        <source src="asserts/demo_videos/comparison/comparison_3rd.mp4" type="video/mp4">
-      </video>
-    </div>
-    <h3><strong>Reference Images Used in Demos</strong></h3>
-    <div class="row">
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/000.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/001.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/002.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/003.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/004.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/005.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/006.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/007.png" style="height: 121px; width: auto;">
-      </figure>
-    </div>
-    <div class="row">
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/008.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/009.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/010.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/011.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/012.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/013.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/014.png" style="height: 121px; width: auto;">
-      </figure>
-      <figure style="width: 100%;margin: 0 0; text-align: center;">
-        <img src="./asserts/demo_videos/ref_imgs/015.png" style="height: 121px; width: auto;">
-      </figure>
-    </div>
+            <div id="teasers">
+                <img src="./asserts/framework.png", style="width: 100%;">
+                <figcaption></figcaption>
+            </div>
 
-  </div>
-</div>
-<div class="content">
-  <h2 style="text-align:center; margin: 0 auto;"><strong>BibTex</strong></h2>
-  <code>@article{chen2024echomimic,<br>
-      title={EchoMimic: Lifelike Audio-Driven Portrait Animations through Editable Landmark Conditioning},<br>
-      author={Zhiyuan Chen, Jiajiong Cao, Zhiquan Chen, Yuming Li, Chenguang Ma},<br>
-      year={2024},<br>
-      eprint={2407.08136},<br>
-      archivePrefix={arXiv},<br>
-      primaryClass={cs.CV}<br>
-   </code>
-</div>
+            <p style="line-height: 30px;">
+                Recent advances in diffusion models have revolutionized audio-driven talking head synthesis. Beyond precise lip synchronization, diffusion-based methods excel in generating subtle expressions and natural head movements that are well-aligned with the audio signal. However, these methods are confronted by slow inference speed, insufficient fine-grained control over facial motions, and occasional visual artifacts largely due to an implicit latent space derived from Variational Auto-Encoders (VAE), which prevent their adoption in realtime interaction applications. To address these issues, we introduce Ditto, a diffusion-based framework that enables controllable realtime talking head synthesis. Our key innovation lies in bridging motion generation and photorealistic neural rendering through an explicit identity-agnostic motion space, replacing conventional VAE representations. This design substantially reduces the complexity of diffusion learning while enabling precise control over the synthesized talking heads. We further propose an inference strategy that jointly optimizes three key components: audio feature extraction, motion generation, and video synthesis. This optimization enables streaming processing, realtime inference, and low first-frame delay, which are the functionalities crucial for interactive applications such as AI assistants. Extensive experimental results demonstrate that Ditto generates compelling talking head videos and substantially outperforms existing methods in both motion control and realtime performance.
+            </p>
+
+        </div>
+
+        <div class="content">
+            <h2 style="text-align: center;"><strong>Gallery</strong></h2>
+
+            <h3>Multi-Style Images Driven by Broadcast Audio.</h3>
+            <div class="gallery">
+                <div class="row">
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/13.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/12.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/11.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <h3>Multi-Style Images Driven by Singing Audio.</h3>
+            <div class="gallery">
+                <div class="row">
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/23.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/21.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/22.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <h3>Fine-grained Control:  Gaze, Headpose, Emotion</h3>
+            <div class="row">
+                <video style="width: 100%; object-fit: cover;" controls>
+                <source src="asserts/videos/ctrl_cat.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+
+            <!-- <h3>Full-body Portrait (English)</h3>
+            <div class="row">
+                <video style="width: 100%; object-fit: cover;" controls>
+                <source src="asserts/videos/full_body_en.mp4" type="video/mp4">
+                </video>
+            </div> -->
+
+            <h3>Full-body Portrait (Chinese)</h3>
+            <div class="row">
+                <video style="width: 100%; object-fit: cover;" controls>
+                <source src="asserts/videos/full_body_zh.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- <h3>Fine-grained Control:  Gaze, Headpose, Emotion</h3>
+            <div class="gallery">
+                <div class="row">
+
+                    <img src="./asserts/videos/luna_crop.png", style="width: 24%;">
+                    <video style="width: 24%; object-fit: cover;" controls>
+                        <source src="asserts/videos/ctrl_look_right.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 24%; object-fit: cover;" controls>
+                        <source src="asserts/videos/ctrl_look_left.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 24%; object-fit: cover;" controls>
+                        <source src="asserts/videos/ctrl_sad.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div> -->
+
+        </div>
+
+        <div class="content">
+            <h2 style="text-align:center; margin: 0 auto;"><strong>BibTex</strong></h2>
+            <div class="bibtex" style="font-size: 15px;">
+                <code>
+                    @article{li2024ditto,<br>
+                    &nbsp; title={Ditto: Motion-Space Diffusion for Controllable Realtime Talking Head Synthesis},<br>
+                    &nbsp; author={Li, Tianqi and Zheng, Ruobing and Yang, Minghui and Chen, Jingdong and Yang, Ming},<br>
+                    &nbsp; journal={arXiv preprint arXiv:2411.19509},<br>
+                    &nbsp; year={2024}<br>
+                    }
+                </code>
+            </div>
+        </div>
+
+        <footer style="text-align: center; font-size: medium; color: blueviolet;">
+            <span id="busuanzi_container_page_pv">Page Views: <span id="busuanzi_value_page_pv"></span></span>
+        </footer>
+
+    </body>
+
+</html>
