@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>MoDA: Multi-modal Diffusion Architecture for Talking Head Generation</title>
+        <link rel="stylesheet" href="static/css/bulma.min.css">
+        <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+        <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+        <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="./asserts/style.css" rel="stylesheet">
+
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    </head>
+
+    <body>
+
+        <div class="content">
+            <h1><strong> MoDA: Multi-modal Diffusion Architecture for Talking Head Generation</strong></h1>
+
+            <div class="row" style="border: 1px solid #a3a3a3; border-radius: 4px;">
+                <video style="width: 100%; object-fit: cover;" controls>
+                    <source src="asserts/videos/full_body_en.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            
+            
+
+        </div>
+
+        <div class="content">
+            <h2 style="text-align:center"><strong>Abstract</strong></h2>
+
+            <div id="teasers">
+                <img src="./asserts/frameworks.png", style="width: 100%;">
+                <figcaption></figcaption>
+            </div>
+
+            <p style="line-height: 30px;">
+              Talking head generation with arbitrary identities and speech audio remains a crucial problem in
+the realm of the virtual metaverse. Recently, diffusion models have become a
+popular generative technique in this field with their strong generation and generalization capabilities.
+However, several challenges remain for diffusion-based methods: 1) inefficient inference and visual
+artifacts, which arise from the implicit latent space of Variational Auto-Encoders (VAE), complicating
+the diffusion process; 2) authentic facial expressions and head movements, resulting from insufficient
+multi-modal information interaction. In this paper, MoDA handle these challenges by 1) defines a
+joint parameter space to bridge motion generation and neural rendering, and leverages flow matching
+to simplify the diffusion learning process; 2) introduces a multi-modal diffusion architecture to
+model the interaction among noisy motion, audio, and auxiliary conditions, ultimately enhancing
+overall facial expressiveness. Subsequently, a coarse-to-fine fusion strategy is adopted to progressively
+integrate different modalities, ensuring effective integration across feature spaces. Experimental results
+demonstrate that MoDA significantly improves video diversity, realism, and efficiency, making it
+suitable for real-world applications.
+            </p>
+
+        </div>
+
+        <div class="content">
+            <h2 style="text-align: center;"><strong>Gallery</strong></h2>
+
+            <h3>Multi-Style Images Driven by Broadcast Audio.</h3>
+            <div class="gallery">
+                <div class="row">
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/13.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/12.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/11.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <h3>Multi-Style Images Driven by Singing Audio.</h3>
+            <div class="gallery">
+                <div class="row">
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/23.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/21.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="asserts/videos/22.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <h3>Fine-grained Control:  Gaze, Headpose, Emotion</h3>
+            <div class="row">
+                <video style="width: 100%; object-fit: cover;" controls>
+                <source src="asserts/videos/ctrl_cat.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+
+            <!-- <h3>Full-body Portrait (English)</h3>
+            <div class="row">
+                <video style="width: 100%; object-fit: cover;" controls>
+                <source src="asserts/videos/full_body_en.mp4" type="video/mp4">
+                </video>
+            </div> -->
+
+            <h3>Full-body Portrait (Chinese)</h3>
+            <div class="row">
+                <video style="width: 100%; object-fit: cover;" controls>
+                <source src="asserts/videos/full_body_zh.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- <h3>Fine-grained Control:  Gaze, Headpose, Emotion</h3>
+            <div class="gallery">
+                <div class="row">
+
+                    <img src="./asserts/videos/luna_crop.png", style="width: 24%;">
+                    <video style="width: 24%; object-fit: cover;" controls>
+                        <source src="asserts/videos/ctrl_look_right.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 24%; object-fit: cover;" controls>
+                        <source src="asserts/videos/ctrl_look_left.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 24%; object-fit: cover;" controls>
+                        <source src="asserts/videos/ctrl_sad.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div> -->
+
+        </div>
+
+        <div class="content">
+            <h2 style="text-align:center; margin: 0 auto;"><strong>BibTex</strong></h2>
+            <div class="bibtex" style="font-size: 15px;">
+                <code>
+                    @article{li2024ditto,<br>
+                    &nbsp; title={Ditto: Motion-Space Diffusion for Controllable Realtime Talking Head Synthesis},<br>
+                    &nbsp; author={Li, Tianqi and Zheng, Ruobing and Yang, Minghui and Chen, Jingdong and Yang, Ming},<br>
+                    &nbsp; journal={arXiv preprint arXiv:2411.19509},<br>
+                    &nbsp; year={2024}<br>
+                    }
+                </code>
+            </div>
+        </div>
+
+        <footer style="text-align: center; font-size: medium; color: blueviolet;">
+            <span id="busuanzi_container_page_pv">Page Views: <span id="busuanzi_value_page_pv"></span></span>
+        </footer>
+
+    </body>
+
+</html>
