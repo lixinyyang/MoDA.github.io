@@ -1,137 +1,179 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>MoDA: Multi-modal Diffusion Architecture for Talking Head Generation</title>
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="./asserts/style.css" rel="stylesheet">
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-</head>
-<body>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>MoDA: Multi-modal Diffusion Architecture for Talking Head Generation</title>
+        <link rel="stylesheet" href="static/css/bulma.min.css">
+        <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+        <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+        <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="./asserts/style.css" rel="stylesheet">
 
-  <div class="content">
-    <h1><strong>MoDA: Multi-modal Diffusion Architecture for Talking Head Generation</strong></h1>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    </head>
 
-    <div class="row" style="border: 1px solid #a3a3a3; border-radius: 4px;">
-      <video style="width: 100%; object-fit: cover;" controls>
-        <source src="moda/moda.mp4" type="video/mp4">
-      </video>
-    </div>
+    <body>
 
-    <div align="center" style="margin-top: 1em;">
-      <strong>Authors</strong><br><br>
-      Xinyang Li<sup>1,2</sup>, Gen Li<sup>2</sup>, Zhihui Lin<sup>1,3</sup>, Yichen Qian<sup>1,3 †</sup>, Gongxin Yao<sup>2</sup>, Weinan Jia<sup>1</sup>, Weihua Chen<sup>1,3</sup>, Fan Wang<sup>1,3</sup><br><br>
-      <sup>1</sup>Xunguang Team, DAMO Academy, Alibaba Group 
-      <sup>2</sup>Zhejiang University 
-      <sup>3</sup>Hupan Lab<br><br>
-      <sup>†</sup>Corresponding authors: yichen.qyc@alibaba-inc.com, l_xyang@zju.edu.cn
-    </div>
+        <div class="content">
+            <h1><strong> MoDA: Multi-modal Diffusion Architecture for Talking Head Generation</strong></h1>
 
-    <div align="center" style="margin: 1.5em 0;">
-      <a href="https://lixinyyang.github.io/MoDA.github.io/">
-        <img src="https://img.shields.io/badge/Project-Page-blue" alt="Project Page">
-      </a>
-      <a href="https://arxiv.org/abs/2507.03256">
-        <img src="https://img.shields.io/badge/Paper-Arxiv-red" alt="ArXiv Paper">
-      </a>
-    </div>
-  </div>
+            <div class="row" style="border: 1px solid #a3a3a3; border-radius: 4px;">
+                <video style="width: 100%; object-fit: cover;" controls>
+                    <source src="moda/moda.mp4" type="video/mp4">
+                </video>
+            </div>
+        <div align="center">
 
-  <div class="content">
-    <h2 class="has-text-centered"><strong>Abstract</strong></h2>
-    <div id="teasers">
-      <img src="asserts/frameworks.png" style="width: 100%;" alt="MoDA Framework">
-    </div>
-    <p style="line-height: 1.8;">
-      Talking head generation with arbitrary identities and speech audio remains a crucial problem in the realm of the virtual metaverse. Recently, diffusion models have become a popular generative technique in this field with their strong generation capabilities. However, several challenges remain for diffusion-based methods:
-      <ol>
-        <li>Inefficient inference and visual artifacts caused by the implicit latent space of Variational Auto-Encoders (VAE), which complicates the diffusion process;</li>
-        <li>A lack of authentic facial expressions and head movements due to inadequate multi-modal information fusion.</li>
-      </ol>
-      In this paper, MoDA handles these challenges by:
-      <ol>
-        <li>Defining a joint parameter space that bridges motion generation and neural rendering, and leveraging flow matching to simplify diffusion learning;</li>
-        <li>Introducing a multi-modal diffusion architecture to model the interaction among noisy motion, audio, and auxiliary conditions, enhancing overall facial expressiveness.</li>
-      </ol>
-      In addition, a coarse-to-fine fusion strategy is employed to progressively integrate different modalities, ensuring effective feature fusion. Experimental results demonstrate that MoDA improves video diversity, realism, and efficiency, making it suitable for real-world applications.
-    </p>
-  </div>
-
-  <div class="content">
-    <h2 class="has-text-centered"><strong>Gallery</strong></h2>
-
-    <h3>Talking Head Generation in Complex Scenarios</h3>
-    <div class="gallery">
-      <div class="row">
-        <video style="width: 33%; object-fit: cover;" controls><source src="moda/Complex Scenarios/1.mp4" type="video/mp4"></video>
-        <video style="width: 33%; object-fit: cover;" controls><source src="moda/Complex Scenarios/2.mp4" type="video[object Object]4"></video>
-        <video style="width: 33%; object-fit: cover;" controls><source src="moda/Complex Scenarios/3.mp4" type="video/mp4"></video>
-      </div>
-      <div class="row">
-        <video style="width: 33%; object-fit: cover;" controls><source src="moda/Complex Scenarios/4.mp4" type="video/mp4"></video>
-        <video style="width: 33%; object-fit: cover;" controls><source src="moda/Complex Scenarios/5.mp4" type="video/mp4"></video>
-        <video style="width: 33%; object-fit: cover;" controls><source src="moda/Complex Scenarios/6.mp4" type="video/mp4"></video>
-      </div>
-      <div class="row">
-        <video style="width: 33%; object-fit: cover;" controls><source src="moda/Complex Scenarios/7.mp4" type="video/mp4"></video>
-        <video style="width: 33%; object-fit: cover;" controls><source src="moda/Complex Scenarios/8.mp4" type="video/mp4"></video>
-        <video style="width: 33%; object-fit: cover;" controls><source src="moda/Complex Scenarios/9.mp4" type="video/mp4"></video>
-      </div>
-    </div>
-
-    <h3>Fine-grained Emotion Control</h3>
-    <div class="gallery">
-      <div class="row">
-        <div style="width: 50%; padding: 0 5px; box-sizing: border-box;">
-          <p class="has-text-centered"><strong>Happy</strong></p>
-          <video style="width: 100%; object-fit: cover;" controls><source src="moda/Emotion Control/1-1.mp4" type="video/mp4"></video>
+        <strong>Authors</strong> <br><br>
+        
+        Xinyang&nbsp;Li<sup>1,2</sup>,&nbsp;
+        Gen&nbsp;Li<sup>2</sup>,&nbsp;
+        Zhihui&nbsp;Lin<sup>1,3</sup>,&nbsp;
+        Yichen&nbsp;Qian<sup>1,3&nbsp;†</sup>,&nbsp;
+        Gongxin&nbsp;Yao<sup>2</sup>,&nbsp;
+        Weinan&nbsp;Jia<sup>1</sup>,&nbsp;
+        Weihua&nbsp;Chen<sup>1,3</sup>,&nbsp;
+        Fan&nbsp;Wang<sup>1,3</sup> <br><br>
+        
+        <sup>1</sup>Xunguang&nbsp;Team,&nbsp;DAMO&nbsp;Academy,&nbsp;Alibaba&nbsp;Group&nbsp;&nbsp;&nbsp;
+        <sup>2</sup>Zhejiang&nbsp;University&nbsp;&nbsp;&nbsp;
+        <sup>3</sup>Hupan&nbsp;Lab <br><br>
+        
+        <sup>†</sup>Corresponding authors: yichen.qyc@alibaba-inc.com,&nbsp;l_xyang@zju.edu.cn
+        
         </div>
-        <div style="width: 50%; padding: 0 5px; box-sizing: border-box;">
-          <p class="has-text-centered"><strong>Sad</strong></p>
-          <video style="width: 100%; object-fit: cover;" controls><source src="moda/Emotion Control/1-2.mp4" type="video/mp4"></video>
         </div>
-      </div>
-      <div class="row">
-        <div style="width: 50%; padding: 0 5px; box-sizing: border-box;">
-          <p class="has-text-centered"><strong>Happy</strong></p>
-          <video style="width: 100%; object-fit: cover;" controls><source src="moda/Emotion Control/2-1.mp4" type="video/mp4"></video>
-        </div>
-        <div style="width: 50%; padding: 0 5px; box-sizing: border-box;">
-          <p class="has-text-centered"><strong>Sad</strong></p>
-          <video style="width: 100%; object-fit: cover;" controls><source src="moda/Emotion Control/2-2.mp4" type="video/mp4"></video>
-        </div>
-      </div>
-    </div>
+        <br>
+        <div align='center'>
+            <a href='https://lixinyyang.github.io/MoDA.github.io/'><img src='https://img.shields.io/badge/Project-Page-blue'></a>
+            <a href='https://arxiv.org/abs/2507.03256'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
+        </div>  
+            
 
-    <h3>Long Videos Generation</h3>
-    <div class="gallery">
-      <div class="row">
-        <video style="width: 50%; object-fit: cover;" controls><source src="moda/Long Videos Generation/1.mp4" type="video/mp4"></video>
-        <video style="width: 50%; object-fit: cover;" controls><source src="moda/Long Videos Generation/2.mp4" type="video/mp4"></video>
-      </div>
-    </div>
-  </div>
+        </div>
 
-  <section class="section">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Citation</h2>
-      <pre style="background:#f5f5f5; padding:14px;"><code>@article{li2025moda,
+        <div class="content">
+            <h2 style="text-align:center"><strong>Abstract</strong></h2>
+
+            <div id="teasers">
+                <img src="asserts/frameworks.png", style="width: 100%;">
+                <figcaption></figcaption>
+            </div>
+
+            <p style="line-height: 30px;">
+Talking head generation with arbitrary identities and speech audio remains a crucial problem in
+the realm of the virtual metaverse. Recently, diffusion models have become a
+popular generative technique in this field with their strong generation capabilities. However, several challenges remain for diffusion-based methods: 1) inefficient inference and visual
+artifacts caused by the implicit latent space of Variational Auto-Encoders (VAE), which complicates
+the diffusion process; 2) a lack of authentic facial expressions and head movements due to inadequate
+multi-modal information fusion. In this paper, MoDA handles these challenges by: 1) defining a joint parameter space that bridges motion generation and neural rendering, and leveraging flow matching to simplify diffusion learning; 2) introducing a multi-modal diffusion architecture to
+model the interaction among noisy motion, audio, and auxiliary conditions, enhancing overall facial expressiveness. In addition, a coarse-to-fine fusion strategy is employed to progressively integrate different modalities, ensuring effective feature fusion. Experimental results
+demonstrate that MoDA improves video diversity, realism, and efficiency, making it suitable for real-world applications. 
+            </p>
+
+        </div>
+
+        <div class="content">
+            <h2 style="text-align: center;"><strong>gallery</strong></h2>
+
+            <h3>Talking Head Generation in Complex Scenarios.</h3>
+            <div class="gallery">
+                <div class="row">
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="moda/Complex Scenarios/1.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="moda/Complex Scenarios/2.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="moda/Complex Scenarios/3.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="row">
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="moda/Complex Scenarios/4.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="moda/Complex Scenarios/5.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="moda/Complex Scenarios/6.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="row">
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="moda/Complex Scenarios/7.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="moda/Complex Scenarios/8.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 33%; object-fit: cover;" controls>
+                        <source src="moda/Complex Scenarios/9.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <h3>Fine-grained Emotion Control.</h3>
+            <div class="gallery">
+                <div class="row">
+                    <div style="width: 50%; padding: 0 5px; box-sizing: border-box;">
+                        <p style="text-align: center;"><strong>Happy</strong></p>
+                        <video style="width: 100%; object-fit: cover;" controls>
+                            <source src="moda/Emotion Control/1-1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div style="width: 50%; padding: 0 5px; box-sizing: border-box;">
+                        <p style="text-align: center;"><strong>Sad</strong></p>
+                        <video style="width: 100%; object-fit: cover;" controls>
+                            <source src="moda/Emotion Control/1-2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="width: 50%; padding: 0 5px; box-sizing: border-box;">
+                        <p style="text-align: center;"><strong>Happy</strong></p>
+                        <video style="width: 100%; object-fit: cover;" controls>
+                            <source src="moda/Emotion Control/2-1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div style="width: 50%; padding: 0 5px; box-sizing: border-box;">
+                        <p style="text-align: center;"><strong>Sad</strong></p>
+                        <video style="width: 100%; object-fit: cover;" controls>
+                            <source src="moda/Emotion Control/2-2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <h3>Long Videos Generation.</h3>
+            <div class="gallery">
+                <div class="row">
+                    <video style="width: 50%; object-fit: cover;" controls>
+                    <source src="moda/Long Videos Generation/1.mp4" type="video/mp4">
+                    </video>
+                    <video style="width: 50%; object-fit: cover;" controls>
+                    <source src="moda/Long Videos Generation/2.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+<section class="section">
+  <div class="gallery">
+    <h2 class="title is-3 has-text-centered">Citation</h2>
+    <div class="citation-block">
+      <pre style="background:#f5f5f5; padding:14px; margin: 0; white-space: pre-wrap;"><code>@article{li2025moda,
   title     = {MoDA: Multi-modal Diffusion Architecture for Talking Head Generation},
-  author    = {Li, Xinyang and Li, Gen and Lin, Zhihui and Qian, Yichen and Yao, Gongxin and Jia, Weinan and Chen, Weihua and Wang, Fan},
+  author    = {Li, Xinyang and Li, Gen and Lin, Zhihui and Qian, Yichen and 
+               Yao, Gongxin and Jia, Weinan and Chen, Weihua and Wang, Fan},
   journal   = {arXiv preprint arXiv:2507.03256},
   year      = {2025}
 }</code></pre>
     </div>
-  </section>
+  </div>
+</section>
+</section>
+        <footer style="text-align: center; font-size: medium; color: blueviolet;">
+            <span id="busuanzi_container_page_pv">Page Views: <span id="busuanzi_value_page_pv"></span></span>
+        </footer>
 
-  <footer style="text-align: center; font-size: medium; color: blueviolet; margin: 2em 0;">
-    <span id="busuanzi_container_page_pv">Page Views: <span id="busuanzi_value_page_pv"></span></span>
-  </footer>
-
-</body>
+    </body>
 </html>
